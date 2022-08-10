@@ -1,0 +1,82 @@
+﻿
+
+@model IEnumerable<SuperMarket.Models.Bill>
+
+@{
+    ViewData["Title"] = "Bill";
+    decimal TotalAmount = 0.00M;
+}
+@section head{
+    <style type="text/css">
+    body
+    {        
+       
+        padding-top:20px;
+        background-image:url('/images/img.webp');
+        background-size:cover;
+        image-resolution:2000x1000;
+        background-repeat:no-repeat; 
+        margin:auto;
+    }
+    </style>
+}
+<center><h2>Billing</h2></center>
+<div style="border-top:1px solid black">
+<div class="container mb-5 mt-2">
+    <a href="~/Cashier/AddBill" class="btn btn-success">Add Product</a>
+</div>
+</div>
+
+<div class="container">
+    <table class="table table-borderless">
+        <tr class="bg-success text-white">
+            <th>Id</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        @{
+            try
+            {
+                if(TempData["Bill"]!=null)
+                {
+                    foreach(var x in (List<SuperMarket.Models.Bill>)TempData["Bill"])
+                    {
+                        TotalAmount += x.Price;
+                        <tr class="text-primary">
+                        <td>@x.Id</td>
+                        <td>@x.ProductName</td>
+                        <td>@x.ProductCategory</td>
+                        <td>@x.Quantity.ToString(format:"#,##0.00")</td>
+                        <td>@x.Price.ToString(format:"#,##0.00")</td>
+                        <td>
+                            <a href="~/Cashier/EditBill?id=@x.Id" class="text-decoration-underline">Edit</a>|
+                            <a href="~/Cashier/Delete?id=@x.Id" class="text-decoration-underline">Delete</a>
+                        </td>
+                        
+                        </tr>
+                    }
+                    <tr style="border-top:2px solid maroon" >
+                    <td colspan="4">
+                        <h3>Total Amount</h3>
+                    </td>
+                    <td>
+                       <h3>@TotalAmount.ToString(format:"#,##0.00")</h3>
+                    </td>
+                    </tr>
+                }
+            }
+            catch
+            {
+                
+            }
+        }
+    </table>
+
+</div>      
+
+<form action="~/Cashier/Payment" method="post" style="margin-left:90%">
+     <a href="~/Cashier/Payment" class="btn btn-primary">Submit</a>
+</form>

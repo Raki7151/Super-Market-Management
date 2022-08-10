@@ -1,0 +1,67 @@
+﻿
+
+<form action="~/User/Login" method="post">
+     <button id="mybutton" type="submit" name=" login " class="button button1">LogIn</button>					
+</form>
+
+<div style="color:fuchsia">
+     <center><h1 style="font-family:Lucida Calligraphy">Welocome To SuperMarket</h1></center>
+</div>
+
+
+
+
+
+@{
+    ViewData["Title"] = "SuperMarket";
+}
+
+<head>
+
+    <title>SuperMarketManagement</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <link rel="stylesheet" href="~/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="header"
+     
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                   <a href="category"> <img src="~/image.png" width="150px">   </a> 
+                </div>
+                <nav>
+                    <ul id="MenuItems">
+                        <li> <input class="search" type="text" placeholder=" Search" ></li>
+                        <li> <a href="Category">Home</a></li>
+                        <li> <a href="">About</a></li>
+                        <li> <a href="">Contact</a></li>
+        
+                    </ul>
+                </nav>
+
+            </div>
+    
+            <div class="row">
+                <div class="col-1">
+                   <center><p>Click...On Manager/Cashier Button to SignUp</p></center>
+                   <center><a href="~/User/SignUp/" class="btn">Manager/Cashier</a></center>
+
+                 </div>
+               
+                <div class="col-1">
+                    <img src="~/image 2.jpg" width="2000">
+                </div>
+            </div>
+    
+        </div>
+    
+    </div>
+</body>
+  

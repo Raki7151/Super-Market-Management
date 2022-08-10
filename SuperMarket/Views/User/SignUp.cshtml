@@ -1,0 +1,122 @@
+﻿
+@model SuperMarket.Models.UserMaster
+
+@{
+    ViewBag.Title = "Register";
+    //Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@section head{
+    <style type="text/css">
+    body
+    {        
+        padding-top:20px;
+        background-image:url('https://images.pexels.com/photos/5632346/pexels-photo-5632346.jpeg?auto=compress&cs=tinysrgb&w=600');
+        background-size:cover;
+        background-repeat:no-repeat; 
+        margin:auto;
+    }
+    </style>
+}
+
+<center><h1>User Registration</h1></center>
+<hr/>
+
+<div class="row justify-content-md-center">
+    <div class="col-md-5">
+        @using (Html.BeginForm("SignUp", "User", FormMethod.Post))
+        {
+            //@Html.ValidationSummary()
+            @Html.AntiForgeryToken()
+
+          @* <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Register</div>
+                </div>
+                <div class="card-body">*@
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Manager/Cashier" })
+                        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "badge badge-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.FirstName)
+                        @Html.TextBoxFor(m => m.FirstName, "", new { @class = "form-control", @placeholder = "FirstName" })
+                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "badge badge-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.LastName)
+                        @Html.TextBoxFor(m => m.LastName, "", new { @class = "form-control", @placeholder = "LastName" })
+                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "badge badge-danger" })
+
+                    </div>
+                    <div class="form-group mt-2 mb-2">
+                        @Html.LabelFor(m => m.Gender)
+                        <input class="form-control-color" type="radio" id="Gender" name="Gender" value="Male"/>Male
+                        <input type="radio" id="Gender" name="Gender" value="Female"/>Female
+
+                    </div>
+                     <div class="form-group">
+                        @Html.LabelFor(m => m.MobileNo)
+                        @Html.TextBoxFor(m => m.MobileNo, "", new { @class = "form-control", @placeholder = "Mobile No." })
+                        @Html.ValidationMessageFor(m => m.MobileNo, "", new { @class = "badge badge-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, "", new { @class = "form-control", @placeholder = "Email" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "badge badge-danger" })
+                        @if (ViewBag.error != null)
+                        {
+                            <span class="badge badge-danger">@ViewBag.error</span>
+                        }
+                    </div>
+                     <div class="form-group">
+                        @Html.LabelFor(m => m.UserId)
+                        @Html.TextBoxFor(m => m.UserId, "", new { @class = "form-control", @placeholder = "UserId" })
+                        @Html.ValidationMessageFor(m => m.UserId, "", new { @class = "badge badge-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "badge badge-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ConfirmPassword)
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "ConfirmPassword" })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "badge badge-danger" })
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="submit" name="submit" class="btn btn-success" value="Register"/>
+                    </div>
+              @*  </div>
+            </div>*@
+
+        }
+    </div>
+</div>
+   <div class="text-sm-center" >
+   Click Here....<a href="~/User/Login">Login</a></div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+ @{
+        try
+        {
+            if(TempData["AddMsg"] !=null)
+            {
+               
+               <script>
+                        swal("Good job!", "Registered Sucecssfully!", "success");
+               </script>
+            }
+            
+        }
+    catch
+    {
+        
+    }
+}

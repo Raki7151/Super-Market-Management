@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "Bill";
+    decimal TotalAmount = 0.00M;
+}
+@section head{
+    <style type="text/css">
+    body
+    {        
+       
+        padding-top:20px;
+        background-image:url('/images/img.webp');
+        background-size:cover;
+        image-resolution:2000x1000;
+        background-repeat:no-repeat; 
+        margin:auto;
+    }
+    </style>
+}
+<center><h2>Bill</h2></center>
+<div style="border-top:1px solid black">
+
+</div>
+
+<div class="container mt-5">
+    <table class="table table-borderless">
+        <tr class="bg-black text-white">
+            <th>Id</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        @{
+            try
+            {
+                if(TempData["Bill"]!=null)
+                {
+                    foreach(var x in (List<SuperMarket.Models.Bill>)TempData["Bill"])
+                    {
+                        TotalAmount += x.Price;
+                        <tr class="text-black">
+                        <td>@x.Id</td>
+                        <td>@x.ProductName</td>
+                        <td>@x.ProductCategory</td>
+                        <td>@x.Quantity.ToString(format:"#,##0.00")</td>
+                        <td>@x.Price.ToString(format:"#,##0.00")</td>
+                        
+                        </tr>
+                    }
+                    <tr style="border-top:2px solid maroon" >
+                    <td colspan="4" style="text-align:right">
+                        <h3>Total Amount</h3>
+                    </td>
+                    <td>
+                       <h3>@TotalAmount.ToString(format:"#,##0.00")</h3>
+                    </td>
+                    </tr>
+                }
+            }
+            catch
+            {
+                
+            }
+        }
+  </table>
+
+</div>   

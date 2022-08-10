@@ -1,0 +1,83 @@
+﻿
+@model SuperMarket.Models.CustomerDetails
+
+@{
+    ViewBag.Title = "Register";
+    //Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@section head{
+    <style type="text/css">
+    body
+    {        
+        padding-top:20px;
+        background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnJEJ1XZWVn9hGkojTa5cnm_PQB1LK-IVWKQ&usqp=CAU');
+        background-size:cover;
+        background-repeat:no-repeat; 
+        image-resolution:612x408;
+        margin:auto;
+    }
+    </style>
+}
+
+<center><h1>Customer Details</h1></center>
+<hr/>
+
+<div class="row justify-content-md-start">
+    <div class="col-md-5">
+        @using (Html.BeginForm("Customer", "Cashier", FormMethod.Post))
+        {
+            //@Html.ValidationSummary()
+            @Html.AntiForgeryToken()
+
+           @*<div class="card">
+                <div class="card-header">
+                    <div class="card-title">Customer Details</div>
+                </div>
+                <div class="card-body">*@
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.FullName)
+                        @Html.TextBoxFor(m => m.FullName, "", new { @class = "form-control", @placeholder = "FullName" })
+                        @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "badge badge-danger" })
+                    </div>
+                     <div class="form-group">
+                        @Html.LabelFor(m => m.Mobile)
+                        @Html.TextBoxFor(m => m.Mobile, "", new { @class = "form-control", @placeholder = "Mobile No." })
+                        @Html.ValidationMessageFor(m => m.Mobile, "", new { @class = "badge badge-danger" })
+
+                    </div>
+                    <div class="form-group mt-2 mb-2">
+                        @Html.LabelFor(m => m.Gender)
+                        <input class="form-control-color" type="radio" id="Gender" name="Gender" value="M"/>Male
+                        <input type="radio" id="Gender" name="Gender" value="F"/>Female
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DoB" class="control-label"></label>
+                        <input asp-for="DoB" class="form-control" />
+                        <span asp-validation-for="DoB" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, "", new { @class = "form-control", @placeholder = "Email" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "badge badge-danger" })
+                        @if (ViewBag.error != null)
+                        {
+                            <span class="badge badge-danger">@ViewBag.error</span>
+                        }
+                    </div>
+                     
+                    <div class="form-group mt-3">
+                        <input type="submit" name="submit" class="btn btn-success" value="Save"/>
+                    </div>
+                
+          @*  </div>*@
+
+        }
+    </div>
+</div>
+   @*<div class="text-sm-center" >
+   Click Here....<a href="~/User/Login">To Login</a></div>*@
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

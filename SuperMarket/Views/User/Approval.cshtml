@@ -1,0 +1,50 @@
+﻿<h4>Approved Details</h4>
+<div class="mt-3 mb-3" style="border-top:3px solid black"></div>
+<div class="container mt-3">
+    <table class="table table-borderless">
+        <tr class="bg-success text-white">
+            <th>Id</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Gender</th>
+            <th>Mobile No</th>
+            <th>Email</th>
+            <th>UserId</th>
+            <th>Password</th>           
+            <th>Name</th>
+           
+        </tr>
+        @{
+            try
+            {
+                if(TempData["Register"]!=null)
+                {
+                    foreach(var x in (List<SuperMarket.Models.UserMaster>)TempData["Register"])
+                    {
+                        <tr>
+                        <td>@x.Id</td>
+                        <td>@x.FirstName</td>
+                        <td>@x.LastName</td>
+                        <td>@x.Gender</td>
+                        <td>@x.MobileNo</td>
+                        <td>@x.Email</td>
+                        <td>@x.UserId</td>
+                        <td>@x.Password</td>
+                        <td>@x.Name</td>  
+                        </tr>
+                    }
+                }
+            }
+            catch
+            {
+                
+            }
+        }
+    </table>
+   <div>
+    <a asp-action="Register">Back</a>
+</div>
+
+<script>
+  swal("Good job!","Request Accepted","Success");
+</script>

@@ -1,0 +1,71 @@
+﻿@section head{
+    <style type="text/css">
+    body
+    {        
+       
+        padding-top:20px;
+        background-image:url('/images/img-10.jpg');
+        background-size:cover;
+        background-repeat:no-repeat; 
+        image-resolution:2662x2178;
+        margin:auto;
+    }
+    </style>
+}
+<a href="~/Manager/Product" class="btn btn-success">Fruits</a></td>
+
+<a href="~/Manager/vege" class="btn btn-success" style="Margin-left:3%">Vegatables</a></td>
+
+
+<a href="~/Manager/dairy" class="btn btn-success" style="Margin-left:3%">Dairy</a></td>
+
+<center><h4>Dairy Items</h4></center>
+<div class="mt-3" style="border-top:3px solid black "></div>
+
+<div class="container mt-3 mb-3">
+     <a href="~/Manager/Adddairy" class="btn btn-success">Add Dairy</a>
+</div>
+
+<div class="container mt-3">
+
+    <table class="table table-bordered table-hover mt-3">
+        <tr class="bg-success text-white">
+            <th>Id</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        @{
+            try
+            {
+                if(TempData["milk"]!=null)
+                {
+                    foreach(var x in (List<SuperMarket.Models.Dairy>)TempData["milk"])
+                    {
+                        <tr>
+                        <td>@x.Id</td>
+                        <td>@x.Item</td>
+                        <td>@x.Category</td>
+                        <td>@x.Quantity</td>
+                        <td>@x.Price.ToString(format:"#,##0.00")</td>
+                        <td>
+
+                         <a href="~/Manager/Editdairy?id=@x.Id" class="btn btn-success">Edit</a>
+
+                         <a href="~/Manager/Del?id=@x.Id" class="btn btn-danger" style="margin-left:3%">Delete</a>
+
+                        </td>
+                        </tr>
+                    }
+                }
+            }
+            catch
+            {
+                
+            }
+        }
+    </table>
+
+</div>

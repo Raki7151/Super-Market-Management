@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SuperMarket.Models.Bill>
+
+@{
+    ViewData["Title"] = "Bill";
+    decimal TotalAmount = 0.00M;
+}
+
+<center><h2>Sales</h2></center>
+<div style="border-top:1px solid black">
+@*<div class="container mb-5 mt-2">
+    <a href="~/Cashier/AddBill" class="btn btn-success">Add Product</a>
+</div>*@
+</div>
+
+<div class="container mt-3">
+    <table class="table table-borderless">
+        <tr class="bg-white text-black">
+            <th>Id</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Quantity</th>
+            
+           
+        </tr>
+        @{
+            try
+            {
+                if(TempData["sale"]!=null)
+                {
+                    foreach(var x in (List<SuperMarket.Models.Bill>)TempData["sale"])
+                    {
+                        TotalAmount += x.Price;
+                        <tr class="text-primary">
+                        <td>@x.Id</td>
+                        <td>@x.ProductName</td>
+                        <td>@x.ProductCategory</td>
+                        <td>@x.Quantity.ToString(format:"#,##0.00")</td>
+                        
+                        
+                        
+                        </tr>
+                    }
+                   
+                    
+                }
+            }
+            catch
+            {
+                
+            }
+        }
+    </table>
+
+</div> 
+   <div>
+    <a asp-controller="User" asp-action="Index">Back</a>
+</div>

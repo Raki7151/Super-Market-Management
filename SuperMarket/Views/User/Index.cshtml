@@ -1,0 +1,29 @@
+﻿@{
+    try
+    {
+        if(TempData["msg"] !=null)
+        {
+                <script>
+                        swal("Thank You!", "Logged In Sucecssfully!", "success");
+                </script>
+        }
+    }
+    catch
+    {
+        
+    }
+}
+@*@section head
+{
+    <style type="text/css">
+    body
+    {        
+        padding-top:20px;
+        background-image:url('https://images.pexels.com/photos/5946083/pexels-photo-5946083.jpeg?auto=compress&cs=tinysrgb&w=600');
+        /*background-position:left*/
+        background-size:cover;
+        background-repeat:no-repeat;
+        margin:auto;
+    }  
+    </style>
+}*@

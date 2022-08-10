@@ -1,0 +1,88 @@
+﻿
+<center><h4>User Registeration Details</h4></center>
+<div class="mt-3 mb-3" style="border-top:3px solid black"></div>
+<div class="container mt-3" >
+    <table class="table table-bordered table-hover">
+        <tr class="bg-success text-white">
+            <th>Id</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Gender</th>
+            <th>Mobile No</th>
+            <th>Email</th>
+            <th>UserId</th>
+            <th>Password</th>
+            @*<th>RoleId</th>*@
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        @{
+            try
+            {
+                if(TempData["Register"]!=null)
+                {
+                    foreach(var x in (List<SuperMarket.Models.UserMaster>)TempData["Register"])
+                    {
+                        <tr>
+                        <td>@x.Id</td>
+                        <td>@x.FirstName</td>
+                        <td>@x.LastName</td>
+                        <td>@x.Gender</td>
+                        <td>@x.MobileNo</td>
+                        <td>@x.Email</td>
+                        <td>@x.UserId</td>
+                        <td>@x.Password</td>
+                        <td>@x.Name</td>
+                        <td>
+                         <a href="~/User/Approval" class="btn btn-outline-dark">Approval</a>
+
+                         <a href="~/User/Cancel?id=@x.Id" class="btn btn-danger" style="margin-left:3%">Reject</a>
+                        </td>
+                        </tr>
+                    }
+                }
+            }
+            catch
+            {
+                
+            }
+        }
+    </table>
+
+  
+    @{
+        try
+        {
+            if(TempData["ApprovalMsg"] !=null)
+            {
+               
+               <script>
+                        swal("Good job!", "Request Approved Sucecssfully!", "success");
+               </script>
+            }
+            
+        }
+    catch
+    {
+        
+    }
+}
+
+
+
+@{
+    try
+    {
+        if(TempData["CancelMsg"] !=null)
+        {
+              <script>
+                swal("Good job!","Request Rejected Sucecssfully!", "success");
+           </script>
+        }
+    }
+    catch
+    {
+        
+    }
+}
+
